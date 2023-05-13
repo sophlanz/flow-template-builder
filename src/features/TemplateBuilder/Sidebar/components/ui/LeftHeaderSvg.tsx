@@ -1,7 +1,7 @@
 
 function LeftHeaderSvg() {
   return (
-    <>
+    <div style={{height:"24px", width:"24px", display:"flex", justifyContent:"center", alignItems:"center"}}>
     <svg 
         width="18" 
         height="18"
@@ -15,7 +15,7 @@ function LeftHeaderSvg() {
         fill-opacity="0.54"
     />
     </svg>
-    </>
+    </div>
   );
 }
 

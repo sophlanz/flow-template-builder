@@ -1,5 +1,5 @@
 import MessageTemplate from "./components/MessageTemplate";
-import { Box, Typography }  from '@mui/material';
+import { Box, Typography, alpha }  from '@mui/material';
 import SidebarCloseSvg from "./components/ui/SidebarCloseSvg";
 function Sidebar() {
   return (
@@ -12,7 +12,7 @@ function Sidebar() {
             alignItems:'flex-start',
             width:360,
             height:1273,
-            bgcolor:'secondary.main',
+            bgcolor:alpha( "#FFFFFF",.08),
             boxShadow:'1px 0px 0px rgba(0, 0, 0, 0.08);'
         }}
       >
@@ -24,11 +24,12 @@ function Sidebar() {
                 alignItems:'flex-start',
                 p:0,
                 height:40,
-                alignSelf:'stretch'
-                
+                alignSelf:'stretch',
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                gap:24
           }}
           >
-                <Typography variant="h5" paddingRight={24} width={296} height={31.14}textAlign="left"color="primary.main"> Edit Message </Typography>
+                <Typography variant="h5"  width={296} height={31.14}textAlign="left"> Edit Message </Typography>
                 <SidebarCloseSvg/>
           </Box>
           <MessageTemplate/>
