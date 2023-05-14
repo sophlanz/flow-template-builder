@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Switch, TextField } from '@mui/material';
+import { Box, Container, Typography, Switch, TextField, InputProps } from '@mui/material';
 import { useState, useEffect } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
@@ -221,7 +221,9 @@ function MessageButtons() {
                                                     defaultValue={buttonValue} onChange={(e)=>handleChange(index,e)}
                                                           inputProps={{
                                                              /*max chars */
-                                                             maxLength:25,
+                                                             maxLength:25
+                                                          }}
+                                                          InputProps={{
                                                             style:{
                                                               width:312,
                                                               height:36.5,
@@ -230,8 +232,7 @@ function MessageButtons() {
                                                               fontSize:14,
                                                               fontFamily:theme.typography.fontFamily,
                                                               borderColor:'rgba(0, 0, 0, 0.12)',
-                                                            },
-                                                           
+                                                            }
                                                         }}
                                                     />
                                                     {/*char count */}

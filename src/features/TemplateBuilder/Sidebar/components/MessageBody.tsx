@@ -194,6 +194,9 @@ function MessageBody() {
                          InputProps={{
                             style:bodyStyles
                          }}
+                         inputProps={{
+                          maxLength:1024
+                         }}
                       /> 
                       <Typography
                         sx={{
