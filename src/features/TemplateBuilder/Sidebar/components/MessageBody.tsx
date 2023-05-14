@@ -143,8 +143,8 @@ function MessageBody() {
                                        </Typography>
                                       <ImportantIcon
                                       sx={{ 
-                                          width:12,
-                                          height:12,
+                                          width:14,
+                                          height:14,
                                           color:'rgba(0, 0, 0, 0.38)',
                                       }}
                                       />

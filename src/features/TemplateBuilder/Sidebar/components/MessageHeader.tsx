@@ -9,7 +9,6 @@ import CloseIcon from '@mui/icons-material/Close';
 function MessageHeader() {
   //checked variable for open/close header, default to to show header
   const[checked,setChecked]=useState<boolean>(true)
-  console.log(checked)
   //media type for header, default Image
   const [mediaType,setMediaType]=useState<string>('')
     return (

@@ -90,6 +90,9 @@ function TextEditor ({defaultText, maxChar}:Props) {
                          InputProps={{
                             style:bodyStyles
                          }}
+                         inputProps={{
+                          maxLength:maxChar
+                         }}
                       /> 
                       <Typography
                         sx={{
