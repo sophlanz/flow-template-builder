@@ -6,12 +6,20 @@ import MessageHeader from "./MessageHeader";
 
 function MessageTemplate() {
     return (
-     <>
+     <Box
+        sx={{
+            display:'flex',
+            flexDirection:'column',
+            p:0,
+            gap:24,
+            width:360,
+          /*   height:1233 */
+        }}>
           <MessageHeader/>
           <MessageBody/>
           <MessageFooter/>
           <MessageButtons/>
-      </>
+      </Box>
     );
   }
 

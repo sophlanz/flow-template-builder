@@ -4,6 +4,7 @@ function TemplateBuilder() {
     return (
       <>
         <Sidebar/>
+        <MessageNode/>
       </>
     );
   }

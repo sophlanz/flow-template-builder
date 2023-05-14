@@ -22,7 +22,12 @@ function MessageHeader() {
             p:0,
             height:408,
             width:360,
-            gap:16
+            gap:16,
+            //when !checked, height auto to size of content, avoid gap
+            ...(!checked &&{
+              height:'auto'
+            })
+            
         }}>
             {/*Content Header */}
             <Typography variant="h6" display="flex" alignItems="center" width={220} height={19} color="primary.main">Content</Typography>
@@ -268,7 +273,14 @@ function MessageHeader() {
                                                                     }}>
                                                                       Image header tips
                                                                     </Typography>
-                                                                    <CloseIcon/>
+                                                                    <CloseIcon
+                                                                     sx={{
+                                                                      color:'rgba(0, 0, 0, 0.54)',
+                                                                      '&:hover':{
+                                                                        color:'rgba(0, 0, 0, 0.8)',
+                                                                      }
+                                                                    }}
+                                                                    />
                                                           </Box>
                                                           <Typography
                                                             sx={{
