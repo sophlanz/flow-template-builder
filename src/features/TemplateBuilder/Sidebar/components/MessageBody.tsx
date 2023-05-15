@@ -5,9 +5,25 @@ import ImportantIcon from '@mui/icons-material/Error';
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
 import TextEditor from './TextEditor';
+import { useState, useEffect } from 'react';
+//redux
+import { setBodyMessage } from '../../../../store/template-builder.slice';
+import { useAppDispatch } from '../../../../hooks/redux-hooks';
 function MessageBody() {
+  //redux
+  const dispatch = useAppDispatch();
+  //store body message data in state, when state updates, dispatch changes to store
+  const [newBodyMessage, setNewBodyMessage] = useState<string>('');
+  //dispatch updated body message
+  const handleDispatch =()=>{
+      dispatch(setBodyMessage(newBodyMessage))
+  }
   //save textfield default value
   const defaultText=`👋 Hi {{1}}, we just kicked off our summer sale! ☀️☀️ Wanna hear more? `
+  //call dispatch when newBodyMessage updates
+  useEffect(()=> {
+    if(newBodyMessage.length >0)handleDispatch()
+  },[newBodyMessage])
   return (
       <>
        {/* Body Message (header + textarea) Container */}
@@ -115,7 +131,7 @@ function MessageBody() {
                                       </Box>  
                      </Box>
                       {/*Textarea */}
-                     <TextEditor defaultText={defaultText} maxChar={1024}/>
+                     <TextEditor defaultText={defaultText} maxChar={1024} inputData={setNewBodyMessage} />
                       {/*what are variables? container */}
                       <Box                  
                          sx={{

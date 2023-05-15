@@ -3,7 +3,6 @@ import { Box, Typography, alpha, Button, ThemeProvider }  from '@mui/material';
 import SidebarCloseSvg from "./components/ui/SidebarCloseSvg";
 import theme from '../../../styles/style'
 function Sidebar() {
-  console.log(theme.palette.secondary.main,)
   return (
     <>
     {/*Container for sidebar */}
@@ -50,7 +49,8 @@ function Sidebar() {
                   textAlign:'center',
                   mb:12
                 }}
-                >SAVE</Button>
+                >SAVE
+                </Button>
           </ThemeProvider>
           <Button variant="outlined"
             sx={{

@@ -1,16 +1,47 @@
 import { Box, Typography, Container, Switch, FormControl, /* InputLabel, */ Select, MenuItem, Button, ThemeProvider, Link }  from '@mui/material';
 import LeftHeaderSvg from './ui/LeftHeaderSvg';
 import RightHeaderSvg from './ui/RightHeaderSvg';
-import  { useState } from 'react'
+import  { useState, useEffect } from 'react'
 import theme from '../../../../styles/style'
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
-
+//redux
+import { setHeader } from '../../../../store/template-builder.slice';
+import { useAppDispatch } from '../../../../hooks/redux-hooks';
 function MessageHeader() {
+  //redux
+  const dispatch = useAppDispatch();
   //checked variable for open/close header, default to to show header
-  const[checked,setChecked]=useState<boolean>(true)
+  const[checked,setChecked]=useState<boolean>(true);
+  //save file uploaded by user to state
+  const [newFile, setNewFile]=useState<string>();
   //media type for header, default Image
-  const [mediaType,setMediaType]=useState<string>('')
+  const [mediaType,setMediaType]=useState<string>('');
+  //update file in state
+  const handleChangeFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        const file= e.target.files?.[0]
+        if(!file)return;
+        //read file to get url we can use later
+        const reader = new FileReader();
+        reader.onload=(e)=>{
+          const fileDataUrl=e.target?.result;
+          if(!fileDataUrl)return;
+          if(typeof fileDataUrl === 'string') {
+            setNewFile(fileDataUrl)
+          }
+        }
+     
+  };
+  //dispatch file to redux
+  const handleDispatch= () =>{
+    if(newFile){
+      dispatch(setHeader(newFile))
+    } 
+  }
+  //dispatch changes to redux upon change
+  useEffect(()=> {
+      handleDispatch()
+  },[newFile])
     return (
       /*Content and header Container */
       <Box 
@@ -220,9 +251,21 @@ function MessageHeader() {
                                                   Image size recommendation: 800 X 418 pixel
                                                   </Typography>
                                                   <ThemeProvider theme={theme} >
-                                                  <Button variant="outlined" color="secondary" component="label" size="medium">
+                                                    {/*On change set the file to state*/}
+                                                  <Button 
+                                                    variant="outlined"
+                                                    color="secondary"
+                                                    component="label" 
+                                                    size="medium"
+                                                  >
                                                         Upload Image
-                                                        <input hidden accept="image/*" multiple type="file"/>
+                                                        <input 
+                                                            hidden 
+                                                            accept="image/*"
+                                                            multiple 
+                                                            type="file"
+                                                            onChange={(e) => handleChangeFile(e)}
+                                                          />
                                                   </Button>
                                                   </ThemeProvider>
                                           </Box>

@@ -2,7 +2,11 @@ import { Box, Container, Typography, Button, ThemeProvider } from '@mui/material
 import MessageIcon from '@mui/icons-material/Message';
 import theme from '../../../styles/style';
 import VectorSvg from './components/VectorSvg';
+//redux
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 function MessageNode() {
+  const updatedMessageNode = useAppSelector(state=>state.templateBuilder);
+  console.log(updatedMessageNode);
   const bodyData = 'We have an exciting offer. Are you interested in hearing more?';
   const footerData = `Reply 'STOP' to opt out`;
   const buttonData=['Talk to a styling expert']
@@ -120,7 +124,9 @@ function MessageNode() {
                         flexDirection:'column',
                         height:311.8,
                         width:240,
-                        gap:7.56
+                        gap:7.56,
+                        /*scroll overflow like you would on whatsapps */
+                        overflowY:'scroll'
                     }}>
                   {/* Message container: Header, Body message, Footer*/}
                   <Box
@@ -132,15 +138,17 @@ function MessageNode() {
                         p:7.12,
                         bgcolor:'#FFFFFF',
                         borderRadius:'5.34',
-                        gap:8
+                        gap:8,
+                        overflowY:'scroll'
                     }}>
                        {/*Header Container */}
                        <Box
                         sx={{
-                            height:110,
+                            minHeight:110,
                             width:220,
-                            bgcolor:'blue',
-                            position:'relative'
+                            position:'relative',
+                            backgroundImage:`url(${updatedMessageNode.header})`,
+                            backgroundSize:'cover'
                         }}>
                             {/*Labe*/}
                             <Box
@@ -163,7 +171,7 @@ function MessageNode() {
                           display:'flex',
                           flexDirection:'column',
                           width:218.64,
-                          minHeight:51,
+                          height:'auto',
                           borderTop:'1px dashed #25D366',
                           borderBottom:'1px dashed #25D366',
                           pt:8,
@@ -192,7 +200,7 @@ function MessageNode() {
                                     textAlign:'left',
                                   
                                 }}>
-                              {bodyData}
+                              {updatedMessageNode.bodyMessage}
                             </Typography>
                       </Box>
                       {/*Footer Container */}
@@ -225,7 +233,7 @@ function MessageNode() {
                                   letterSpacing:-.36,
                                   color:'rgba(0, 0, 0, 0.54)'
                               }}>
-                              {footerData}
+                              {updatedMessageNode.footer}
                             </Typography>
                       </Box>
                   </Box>
@@ -234,11 +242,12 @@ function MessageNode() {
                     sx={{
                         display:'flex',
                         flexDirection:'column',
-                        width:232.88
+                        width:232.88,
+                        gap:5
                     }}
                   >
                   {/*we will map out button values array */}
-                  {buttonData.map((value)=> (
+                  {updatedMessageNode.buttons.map((value)=> (
                         <Button id={JSON.stringify(value)}
                         sx={{
                             width:232.88,

@@ -7,12 +7,16 @@ import FormatClearIcon from '@mui/icons-material/FormatClear';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import EmojiPicker from 'emoji-picker-react';
+import { Dispatch, SetStateAction} from 'react'
 interface Props{
     defaultText:string,
     maxChar:number,
-
+    /*we'll send this back to the parent component */
+    inputData:Dispatch<SetStateAction<string>>
 }
-function TextEditor ({defaultText, maxChar}:Props) {
+
+
+function TextEditor ({defaultText, maxChar, inputData}:Props) {
     //Icon styles are all the same
     const iconStyles= {
         width:20,
@@ -77,6 +81,15 @@ function TextEditor ({defaultText, maxChar}:Props) {
           }
           setBodyStyles(newBodyStyles)
       }
+      //change message, update state, and send to parent component, so it can be dispatched to redux store
+      const handleChangeMessage=(e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>)=>{
+            setBodyMessage(e.target.value)
+            /*ensure state of parent components don't recieve undefined value */
+          if(e.target.value !==undefined){
+            inputData(e.target.value ) 
+          }
+           
+      }
     return(
         <>
         {/*Container */}
@@ -94,7 +107,7 @@ function TextEditor ({defaultText, maxChar}:Props) {
                          defaultValue={defaultText}
                          value={bodyMessage}
                          rows={10}
-                         onChange={(e)=> setBodyMessage(e.target.value)}
+                         onChange={(e)=>handleChangeMessage(e)}
                          //we'll change the style depending on the toolkit icons that have been selected
                          //The enitre bodyStyles object will be updated each time
                          InputProps={{

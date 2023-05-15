@@ -1,11 +1,15 @@
 import { Box, Container, Typography, Switch, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
 import theme from '../../../../styles/style'
+//redux
+import { setButtons } from '../../../../store/template-builder.slice';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 function MessageButtons() {
-
+     //redux
+     const dispatch = useAppDispatch();
     //checked variable for open/close header, default to to show header
     const[checked,setChecked]=useState<boolean>(true)
     //default button values
@@ -36,6 +40,14 @@ function MessageButtons() {
         updatedValues.splice(index,0,event.target.value)
         setButtonValues(updatedValues)
     }
+    //dispatch buttonValues array to redux store
+    const handleDispatch = ()=> {
+      dispatch(setButtons(buttonValues))
+    }
+    //useEffect to monitor changes in button values and dispatch to store. 
+    useEffect(()=>{
+      handleDispatch()
+    },[buttonValues])
     return (
       <>
             <Container

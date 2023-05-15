@@ -1,12 +1,28 @@
 import { Box, Container, Typography, Switch } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ImportantIcon from '@mui/icons-material/Error';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import theme from '../../../../styles/style'
 import TextEditor from './TextEditor'
+//redux
+import { setFooter } from '../../../../store/template-builder.slice';
+import { useAppDispatch } from '../../../../hooks/redux-hooks';
 function MessageFooter() {
+    //redux
+    const dispatch = useAppDispatch();
+    //store new footer from TextEditor child component, then dispatch upon update to redux store
+    const [newFooter, setNewFooter]=useState<string>('');
     //checked variable for open/close footer, default to to show footer
     const[checked,setChecked]=useState<boolean>(true)
+    //dispatch new footer to redux store
+    const handleDispatch = () =>{
+        dispatch(setFooter(newFooter))
+    }
+    //when footer is updated, dispatch it. 
+    useEffect(()=> {
+        if(newFooter.length >0)handleDispatch()
+    },[newFooter])
+  
     return (
       <>
             <Container
@@ -135,7 +151,8 @@ function MessageFooter() {
                     </Box>
                     {/*hide text editor if switch is closed, when check is false */}
                     {checked ?
-                    <TextEditor defaultText={`Reply 'STOP' to opt out`} maxChar={60}/>
+                    /*child component will send input data to this parent component, and will be dispatched to redux store*/
+                    <TextEditor defaultText={`Reply 'STOP' to opt out`} maxChar={60} inputData={setNewFooter}/>
                     : 
                     null
                     }
