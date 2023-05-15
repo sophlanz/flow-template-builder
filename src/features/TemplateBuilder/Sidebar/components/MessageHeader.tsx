@@ -36,7 +36,6 @@ function MessageHeader() {
                 display:'flex',
                 flexDirection:'column',
                 alignItems:'flex-start',
-                mt:35,
                 pt:16,
                 pb:16,
                 pr:24,

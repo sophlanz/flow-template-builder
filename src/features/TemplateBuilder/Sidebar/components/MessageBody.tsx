@@ -86,8 +86,6 @@ function MessageBody() {
               borderRadius:'10px',  
               //relative so we can make the char count pos:absolute
               position:'relative',
-              /*gap between sidebar sections */
-              mt:24
           }}
         >
               {/* Body Message (header + textarea) Container */}

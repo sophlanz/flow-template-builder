@@ -13,7 +13,8 @@ function Sidebar() {
             width:360,
             height:1273,
             bgcolor:alpha( "#FFFFFF",.08),
-            boxShadow:'1px 0px 0px rgba(0, 0, 0, 0.08);'
+            boxShadow:'1px 0px 0px rgba(0, 0, 0, 0.08);',
+            overflowY:'scroll'
         }}
       >
            {/*container for edit message and close icon */}

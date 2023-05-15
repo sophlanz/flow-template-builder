@@ -1,5 +1,5 @@
-import { Box, Container, Typography, Switch, TextField, InputProps } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { Box, Container, Typography, Switch, TextField } from '@mui/material';
+import { useState } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
@@ -19,6 +19,7 @@ function MessageButtons() {
     /*delete buttons */
     const handleDelete =(index:number)=>{
           const updatedValues = [...buttonValues]
+          console.log(updatedValues)
           updatedValues.splice(index,1)
           setButtonValues(updatedValues)
     }
@@ -35,9 +36,6 @@ function MessageButtons() {
         updatedValues.splice(index,0,event.target.value)
         setButtonValues(updatedValues)
     }
-    useEffect(()=> {
-
-    },[buttonValues])
     return (
       <>
             <Container
@@ -168,7 +166,7 @@ function MessageButtons() {
                                                 /*button container */
                                                 <Box 
                                                 /*must use a key that will generate the same each time, unless the array has been udpated*/
-                                                  key={`number-${index+1*5}`}
+                                                  key={JSON.stringify(buttonValue)}
                                                   sx={{
                                                     display:'flex',
                                                     flexDirection:'column',
@@ -264,7 +262,10 @@ function MessageButtons() {
                                           fontWeight:500,
                                           letterSpacing:0.4,
                                           width:312,
-                                          textAlign:'left'
+                                          textAlign:'left',
+                                          ...(!checked &&{
+                                            display:'none'
+                                      })
                                       }}
                                     >ADD BUTTON</Typography>
                                     :
