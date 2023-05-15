@@ -1,7 +1,7 @@
 import { Box, Typography, Container, Switch, FormControl, /* InputLabel, */ Select, MenuItem, Button, ThemeProvider, Link }  from '@mui/material';
 import LeftHeaderSvg from './ui/LeftHeaderSvg';
 import RightHeaderSvg from './ui/RightHeaderSvg';
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import theme from '../../../../styles/style'
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
@@ -220,7 +220,7 @@ function MessageHeader() {
                                                   Image size recommendation: 800 X 418 pixel
                                                   </Typography>
                                                   <ThemeProvider theme={theme} >
-                                                  <Button variant="outlined" color="secondary" size="medium">
+                                                  <Button variant="outlined" color="secondary" component="label" size="medium">
                                                         Upload Image
                                                         <input hidden accept="image/*" multiple type="file"/>
                                                   </Button>

@@ -1,4 +1,4 @@
-import { Box, Container, Typography, TextField, Link } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import theme from '../../../../styles/style'
 import SmileyIcon from '@mui/icons-material/EmojiEmotions';
@@ -28,8 +28,9 @@ function TextEditor ({defaultText, maxChar}:Props) {
       interface BodyStyles{
         fontWeight:string,
         fontStyle:string,
+        display?:string
       }
-     const [bodyStyles,setBodyStyles]= useState<BodyStyles>({fontWeight:'normal', fontStyle:"normal"});
+     const [bodyStyles,setBodyStyles]= useState<BodyStyles>({fontWeight:'normal', fontStyle:'normal', display:'block'});
      //track if emoji picker is open, default is closed
      const[emojiPicker,setEmojiPicker]=useState<boolean>(false)
      //get emoji that was clicked
@@ -63,9 +64,18 @@ function TextEditor ({defaultText, maxChar}:Props) {
       const handleResetStyles=()=> {
         const newBodyStyles:BodyStyles={
               fontWeight:'normal',
-              fontStyle:'normal'
+              fontStyle:'normal',
         }
         setBodyStyles(newBodyStyles)
+      }
+      //collapse textfield toggle display: none/null of bodyStyles(style of textField)
+      const handleCollapse =()=>{
+        const currDisplay = bodyStyles.display
+          const newBodyStyles={
+            ...bodyStyles,
+            display:currDisplay =='block' ? 'none':'block'
+          }
+          setBodyStyles(newBodyStyles)
       }
     return(
         <>
@@ -75,7 +85,7 @@ function TextEditor ({defaultText, maxChar}:Props) {
                    display:'flex',
                    flexDirection:'column',
                    width:312,
-                   height:340,
+                   maxHeight:340,
                 }}>
              {/*Textarea */}
              <TextField
@@ -102,7 +112,9 @@ function TextEditor ({defaultText, maxChar}:Props) {
                           fontSzie:14,
                           fontWeight:400,
                           letterSpacing:0.15,
-                          color:'rgba(0, 0, 0, 0.54)'
+                          color:'rgba(0, 0, 0, 0.54)',
+                          /*toggle display with Textfield collapse */
+                          display:bodyStyles.display
                         }}
                       >{`${bodyMessage.length}/${maxChar}`}</Typography>
                       {/*Text Toolbar Container */}
@@ -117,7 +129,6 @@ function TextEditor ({defaultText, maxChar}:Props) {
                               width:312,
                               height:24,
                               mt:16,
-                              mb:24
                           }}
                       >
                              <Typography
@@ -174,7 +185,7 @@ function TextEditor ({defaultText, maxChar}:Props) {
                                      <FormatItalicIcon onClick={handleChangeItalic}
                                         sx={iconStyles}
                                      />
-                                     <UnfoldMoreIcon
+                                     <UnfoldMoreIcon onClick={handleCollapse}
                                         sx={
                                          { ...iconStyles,
                                           transform:'rotate(90deg)'

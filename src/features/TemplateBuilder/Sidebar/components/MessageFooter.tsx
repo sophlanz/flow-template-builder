@@ -19,7 +19,7 @@ function MessageFooter() {
               pr:24,
               pl:24,
               width:360,
-              height:380,
+              maxHeight:380,
               bgcolor:theme.palette.primary.light,
               border: '1px solid rgba(0, 0, 0, 0.12)',
               borderRadius:'10px',  
@@ -32,13 +32,7 @@ function MessageFooter() {
           }}
         >
               {/* Footer  Container */}
-              <Box
-                sx={{
-                   display:'flex',
-                   flexDirection:'column',
-                   width:312,
-                   height:340,
-                }}>
+            
                      {/*Header Container*/}
                      <Box
                        sx={{
@@ -146,7 +140,7 @@ function MessageFooter() {
                     null
                     }
                     
-                </Box>
+               
          </Container>
       </>
     );

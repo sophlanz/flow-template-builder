@@ -7,7 +7,6 @@ const theme = createTheme({
             main:alpha("#000000", 0.87),
             //divider
             light:"#FFFFFF"
-            
         },
         //blues
         secondary:{
