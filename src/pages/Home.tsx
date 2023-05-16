@@ -3,7 +3,7 @@ import { Container, Typography } from '@mui/material';
 function Home() {
   return (
     <Container>
-        <Typography variant="h2">Connectly Template Builder</Typography>
+       {/*  <Typography variant="h3">WhatsApp Campaign Creation</Typography> */}
         <TemplateBuilder/>
     </Container>
   );

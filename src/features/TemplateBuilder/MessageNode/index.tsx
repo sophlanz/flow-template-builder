@@ -1,15 +1,11 @@
-import { Box, Container, Typography, Button, ThemeProvider } from '@mui/material';
+import { Box, Container, Typography, Button } from '@mui/material';
 import MessageIcon from '@mui/icons-material/Message';
 import theme from '../../../styles/style';
 import VectorSvg from './components/VectorSvg';
 //redux
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
+import {  useAppSelector } from '../../../hooks/redux-hooks';
 function MessageNode() {
   const updatedMessageNode = useAppSelector(state=>state.templateBuilder);
-  console.log(updatedMessageNode);
-  const bodyData = 'We have an exciting offer. Are you interested in hearing more?';
-  const footerData = `Reply 'STOP' to opt out`;
-  const buttonData=['Talk to a styling expert']
   const typographyStyles={
     fontSize:12,
     fontWeight:400,
@@ -79,7 +75,8 @@ function MessageNode() {
                   letterSpacing:0.15,
                   color:theme.palette.primary.main
               }}
-            >Message Example</Box>
+              /*Display Campaign Name */
+            >{updatedMessageNode.specific_template.campaign}</Box>
       </Box>
       {/*Message Display Container*/}
       <Box
@@ -147,7 +144,7 @@ function MessageNode() {
                             minHeight:110,
                             width:220,
                             position:'relative',
-                            backgroundImage:`url(${updatedMessageNode.header})`,
+                            backgroundImage:`url(${updatedMessageNode.specific_template.header})`,
                             backgroundSize:'cover'
                         }}>
                             {/*Labe*/}
@@ -200,7 +197,7 @@ function MessageNode() {
                                     textAlign:'left',
                                   
                                 }}>
-                              {updatedMessageNode.bodyMessage}
+                              {updatedMessageNode.specific_template.bodyMessage}
                             </Typography>
                       </Box>
                       {/*Footer Container */}
@@ -233,7 +230,7 @@ function MessageNode() {
                                   letterSpacing:-.36,
                                   color:'rgba(0, 0, 0, 0.54)'
                               }}>
-                              {updatedMessageNode.footer}
+                              {updatedMessageNode.specific_template.footer}
                             </Typography>
                       </Box>
                   </Box>
@@ -247,7 +244,7 @@ function MessageNode() {
                     }}
                   >
                   {/*we will map out button values array */}
-                  {updatedMessageNode.buttons.map((value)=> (
+                  {updatedMessageNode.specific_template.buttons.map((value)=> (
                         <Button id={JSON.stringify(value)}
                         sx={{
                             width:232.88,
@@ -273,5 +270,4 @@ function MessageNode() {
     </Container>
   );
 }
-
 export default MessageNode;

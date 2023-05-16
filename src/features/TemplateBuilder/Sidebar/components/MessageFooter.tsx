@@ -6,12 +6,13 @@ import theme from '../../../../styles/style'
 import TextEditor from './TextEditor'
 //redux
 import { setFooter } from '../../../../store/template-builder.slice';
-import { useAppDispatch } from '../../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 function MessageFooter() {
     //redux
     const dispatch = useAppDispatch();
+    const footerRedux= useAppSelector(state=>state.templateBuilder.specific_template.footer)
     //store new footer from TextEditor child component, then dispatch upon update to redux store
-    const [newFooter, setNewFooter]=useState<string>('');
+    const [newFooter, setNewFooter]=useState<string>(footerRedux);
     //checked variable for open/close footer, default to to show footer
     const[checked,setChecked]=useState<boolean>(true)
     //dispatch new footer to redux store
@@ -152,7 +153,7 @@ function MessageFooter() {
                     {/*hide text editor if switch is closed, when check is false */}
                     {checked ?
                     /*child component will send input data to this parent component, and will be dispatched to redux store*/
-                    <TextEditor defaultText={`Reply 'STOP' to opt out`} maxChar={60} inputData={setNewFooter}/>
+                    <TextEditor defaultText={footerRedux} maxChar={60} inputData={setNewFooter}/>
                     : 
                     null
                     }

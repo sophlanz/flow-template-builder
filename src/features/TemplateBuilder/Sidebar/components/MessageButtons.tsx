@@ -10,16 +10,11 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 function MessageButtons() {
      //redux
      const dispatch = useAppDispatch();
+     const buttonsRedux= useAppSelector(state=> state.templateBuilder.specific_template.buttons)
     //checked variable for open/close header, default to to show header
     const[checked,setChecked]=useState<boolean>(true)
-    //default button values
-    const defaultButtons = [
-      'Talk to a styling expert',
-      'Sure!',
-      'Maybe next time'
-    ]
     //store button values, will be updated dynamically
-    const [buttonValues, setButtonValues]= useState<string[]>(defaultButtons)
+    const [buttonValues, setButtonValues]= useState<string[]>(buttonsRedux)
     /*delete buttons */
     const handleDelete =(index:number)=>{
           const updatedValues = [...buttonValues]

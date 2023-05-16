@@ -7,33 +7,40 @@ import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
 //redux
 import { setHeader } from '../../../../store/template-builder.slice';
-import { useAppDispatch } from '../../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 function MessageHeader() {
   //redux
   const dispatch = useAppDispatch();
+  const imageFileRedux= useAppSelector(state=>state.templateBuilder.specific_template.header)
   //checked variable for open/close header, default to to show header
   const[checked,setChecked]=useState<boolean>(true);
   //save file uploaded by user to state
-  const [newFile, setNewFile]=useState<string>();
+  const [newFile, setNewFile]=useState<string>(imageFileRedux);
   //media type for header, default Image
   const [mediaType,setMediaType]=useState<string>('');
   //update file in state
   const handleChangeFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
+    console.log(e.target)
         const file= e.target.files?.[0]
+        console.log(file)
         if(!file)return;
-        //read file to get url we can use later
+        const fileUrl=URL.createObjectURL(file);
+        setNewFile(fileUrl)
+      /*   //read file to get url we can use later
         const reader = new FileReader();
         reader.onload=(e)=>{
+          console.log(e.target)
           const fileDataUrl=e.target?.result;
           if(!fileDataUrl)return;
           if(typeof fileDataUrl === 'string') {
             setNewFile(fileDataUrl)
           }
-        }
-     
+        };
+     reader.readAsDataURL(file) */
   };
   //dispatch file to redux
   const handleDispatch= () =>{
+    console.log(newFile)
     if(newFile){
       dispatch(setHeader(newFile))
     } 
@@ -42,6 +49,7 @@ function MessageHeader() {
   useEffect(()=> {
       handleDispatch()
   },[newFile])
+
     return (
       /*Content and header Container */
       <Box 

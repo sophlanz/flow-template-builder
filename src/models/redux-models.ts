@@ -1,6 +1,12 @@
 export interface TemplateBuilderModel{
-    "header":File | string,
+    "header":string,
     "bodyMessage":string,
     "footer":string,
-    "buttons":string[]
+    "buttons":string[],
+    "campaign":string,
+    "id":string
 };
+export interface TemplateBuilderArrayModel{
+    all_templates:TemplateBuilderModel[],
+    specific_template:TemplateBuilderModel;
+}

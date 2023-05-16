@@ -8,18 +8,17 @@ import TextEditor from './TextEditor';
 import { useState, useEffect } from 'react';
 //redux
 import { setBodyMessage } from '../../../../store/template-builder.slice';
-import { useAppDispatch } from '../../../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
 function MessageBody() {
   //redux
   const dispatch = useAppDispatch();
+  const bodyMessageRedux=useAppSelector(state=>state.templateBuilder.specific_template.bodyMessage)
   //store body message data in state, when state updates, dispatch changes to store
-  const [newBodyMessage, setNewBodyMessage] = useState<string>('');
+  const [newBodyMessage, setNewBodyMessage] = useState<string>(bodyMessageRedux);
   //dispatch updated body message
   const handleDispatch =()=>{
       dispatch(setBodyMessage(newBodyMessage))
   }
-  //save textfield default value
-  const defaultText=`👋 Hi {{1}}, we just kicked off our summer sale! ☀️☀️ Wanna hear more? `
   //call dispatch when newBodyMessage updates
   useEffect(()=> {
     if(newBodyMessage.length >0)handleDispatch()
@@ -131,7 +130,7 @@ function MessageBody() {
                                       </Box>  
                      </Box>
                       {/*Textarea */}
-                     <TextEditor defaultText={defaultText} maxChar={1024} inputData={setNewBodyMessage} />
+                     <TextEditor defaultText={bodyMessageRedux} maxChar={1024} inputData={setNewBodyMessage} />
                       {/*what are variables? container */}
                       <Box                  
                          sx={{

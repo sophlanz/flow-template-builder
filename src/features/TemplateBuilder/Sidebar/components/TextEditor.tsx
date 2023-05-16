@@ -14,8 +14,6 @@ interface Props{
     /*we'll send this back to the parent component */
     inputData:Dispatch<SetStateAction<string>>
 }
-
-
 function TextEditor ({defaultText, maxChar, inputData}:Props) {
     //Icon styles are all the same
     const iconStyles= {
