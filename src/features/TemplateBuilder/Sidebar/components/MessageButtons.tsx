@@ -28,6 +28,7 @@ function MessageButtons() {
     console.log(updatedValues);
     updatedValues.splice(index, 1);
     setButtonValues(updatedValues);
+    console.log('hi');
   };
   //add button, push new string to buttonValues array
   const handleAddButton = () => {

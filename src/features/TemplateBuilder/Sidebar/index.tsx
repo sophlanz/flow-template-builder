@@ -79,8 +79,8 @@ function Sidebar() {
       //just close the editing, and go back to home screen
       setEditingMode(false);
     } else {
-      handleDispatchDeleteTemplate(specificTemplate);
       setEditingMode(false);
+      handleDispatchDeleteTemplate(specificTemplate);
     }
   };
   {
@@ -113,11 +113,13 @@ function Sidebar() {
   const handleDispatchDeleteTemplate = (
     templateToDelete: TemplateBuilderModel,
   ) => {
+    console.log('dispatch delete template');
     dispatch(deleteFromTemplatesArray(templateToDelete));
   };
   useEffect(() => {
     handleDispatchCampaign();
-  }, [campaignName, handleDispatchCampaign]);
+  }, [campaignName, savedTemplates]);
+  console.log(savedTemplates);
   return (
     <>
       {/*Container for sidebar */}
@@ -307,7 +309,6 @@ function Sidebar() {
           {savedTemplates.map((template) => (
             /*dispatch template to specific_template object in redux store, to be viewed/edited in sidebar*/
             <Box
-              onClick={() => handleDispatchTemplate(template)}
               sx={{
                 width: '75%',
                 boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -318,9 +319,6 @@ function Sidebar() {
                 borderRadius: '10px',
                 justifyContent: 'space-between',
                 pl: 15,
-                '&:hover': {
-                  cursor: 'pointer',
-                },
               }}
             >
               <Box
@@ -334,9 +332,19 @@ function Sidebar() {
                     color: '#7986CB',
                   }}
                 />
-                <Typography>{template.campaign}</Typography>
+                <Typography
+                  onClick={() => handleDispatchTemplate(template)}
+                  sx={{
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
+                >
+                  {template.campaign}
+                </Typography>
               </Box>
               <DeleteIcon
+                onClick={() => handleDispatchDeleteTemplate(specificTemplate)}
                 sx={{
                   width: 24,
                   height: 24,
