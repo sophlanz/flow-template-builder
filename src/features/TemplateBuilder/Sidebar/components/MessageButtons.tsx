@@ -25,10 +25,8 @@ function MessageButtons() {
   /*delete buttons */
   const handleDelete = (index: number) => {
     const updatedValues = [...buttonValues];
-    console.log(updatedValues);
     updatedValues.splice(index, 1);
     setButtonValues(updatedValues);
-    console.log('hi');
   };
   //add button, push new string to buttonValues array
   const handleAddButton = () => {

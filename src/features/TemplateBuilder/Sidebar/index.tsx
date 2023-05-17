@@ -113,13 +113,12 @@ function Sidebar() {
   const handleDispatchDeleteTemplate = (
     templateToDelete: TemplateBuilderModel,
   ) => {
-    console.log('dispatch delete template');
     dispatch(deleteFromTemplatesArray(templateToDelete));
   };
   useEffect(() => {
     handleDispatchCampaign();
   }, [campaignName, savedTemplates]);
-  console.log(savedTemplates);
+
   return (
     <>
       {/*Container for sidebar */}

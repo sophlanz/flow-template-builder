@@ -50,7 +50,6 @@ function MessageHeader() {
   }
   //dispatch file to redux
   const handleDispatch = () => {
-    console.log(newFile);
     if (newFile) {
       dispatch(setHeader(newFile));
     }
