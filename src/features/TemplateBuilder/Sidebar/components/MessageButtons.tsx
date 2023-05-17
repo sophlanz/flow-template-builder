@@ -76,6 +76,21 @@ function MessageButtons() {
           ...(!openButtons && {
             height: 60,
           }),
+          /*grow height on load */
+          '@keyframes growHeight': {
+            '0%': {
+              maxHeight: 60,
+              overflow: 'hidden',
+            },
+            '99.9%': {
+              overflow: 'hidden',
+            },
+            '100%': {
+              maxHeight: 325,
+              overflow: 'visible',
+            },
+          },
+          animation: 'growHeight 3s ease',
         }}
       >
         {/*Buttons title + icons + switch container*/}

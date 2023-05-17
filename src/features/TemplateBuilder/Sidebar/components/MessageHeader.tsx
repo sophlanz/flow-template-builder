@@ -106,6 +106,21 @@ function MessageHeader() {
           ...(!headerOpen && {
             height: 60,
           }),
+          /*grow height on load */
+          '@keyframes growHeight': {
+            '0%': {
+              height: 60,
+              overflow: 'hidden',
+            },
+            '99.9%': {
+              overflow: 'hidden',
+            },
+            '100%': {
+              height: 373,
+              overflow: 'visible',
+            },
+          },
+          animation: 'growHeight 3s ease',
         }}
       >
         {/* Header Content inner Container*/}
