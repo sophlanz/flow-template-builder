@@ -55,7 +55,7 @@ function MessageButtons() {
   //useEffect monitors state changes to buttonValues, then dispatches to redux
   useEffect(() => {
     handleDispatchButtons();
-  }, [buttonValues, handleDispatchButtons]);
+  }, [buttonValues]);
   return (
     <>
       <Container
