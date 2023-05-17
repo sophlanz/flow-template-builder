@@ -27,6 +27,46 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 function Sidebar() {
   {
+    /*Styles
+     */
+  }
+  const animationTranslateTopBottom = {
+    /*top to bottom on load */
+    '@keyframes top-bottom': {
+      '0%': {
+        transform: 'translate(0px,-90px)',
+      },
+      '100%': {
+        transform: 'translate(0px,0px)',
+      },
+    },
+    animation: 'top-bottom 2s ease',
+  };
+  const animationTranslateLeftRight = {
+    /*left to right on load */
+    '@keyframes left-right': {
+      '0%': {
+        transform: 'translateX(-390px)',
+      },
+      '100%': {
+        transform: 'translateX(0px)',
+      },
+    },
+    animation: 'left-right 2s ease',
+  };
+  const animationVisibility = {
+    /*left to right on load */
+    '@keyframes hidden-visible': {
+      '0%': {
+        visbility: 'hidden',
+      },
+      '100%': {
+        visbility: 'visible',
+      },
+    },
+    animation: 'hidden-visibility 2s ease',
+  };
+  {
     /*Redux */
   }
   const dispatch = useAppDispatch();
@@ -152,7 +192,15 @@ function Sidebar() {
           }}
         >
           {/*change sidebar header depedning on if we're editing or viewing the default sidebar */}
-          <Typography variant="h5" width={296} height={31.14} textAlign="left">
+          <Typography
+            variant="h5"
+            width={296}
+            height={31.14}
+            textAlign="left"
+            sx={{
+              ...animationTranslateLeftRight,
+            }}
+          >
             {' '}
             {editingMode ? 'Edit Message' : 'WhatsApp  Campaign'}{' '}
           </Typography>
@@ -222,6 +270,7 @@ function Sidebar() {
               width: '100%',
               mt: 100,
               mb: 50,
+              ...animationTranslateTopBottom,
             }}
           >
             <Typography
@@ -286,6 +335,7 @@ function Sidebar() {
             gap: 40,
             pl: 20,
             ...(editingMode ? { display: 'none' } : {}),
+            ...animationTranslateTopBottom,
           }}
         >
           <Typography

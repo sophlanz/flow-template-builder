@@ -31,6 +31,18 @@ function MessageNode() {
     pr: 12,
     bgcolor: '#FFFFFF',
   };
+  const animationFadeIn = {
+    /*left to right on load */
+    '@keyframes fadeIn': {
+      '0%': {
+        opacity: '0',
+      },
+      '100%': {
+        opacity: '100',
+      },
+    },
+    animation: 'fadeIn 2s ease',
+  };
   return (
     /*Message Node Container */
     <Box
@@ -57,6 +69,7 @@ function MessageNode() {
           alignItems: 'center',
           p: 12,
           backgroundColor: 'white',
+          ...animationFadeIn,
         }}
       >
         {/*Message Header */}
