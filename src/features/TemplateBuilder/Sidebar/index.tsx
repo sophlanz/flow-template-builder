@@ -25,7 +25,6 @@ import {
   deleteFromTemplatesArray,
 } from '../../../store/template-builder.slice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import { Theme } from 'emoji-picker-react';
 function Sidebar() {
   {
     /*Redux */
@@ -117,8 +116,8 @@ function Sidebar() {
   };
   useEffect(() => {
     handleDispatchCampaign();
-  }, [campaignName, savedTemplates]);
-
+  }, [campaignName]);
+  console.log(savedTemplates);
   return (
     <>
       {/*Container for sidebar */}
@@ -343,7 +342,7 @@ function Sidebar() {
                 </Typography>
               </Box>
               <DeleteIcon
-                onClick={() => handleDispatchDeleteTemplate(specificTemplate)}
+                onClick={() => handleDispatchDeleteTemplate(template)}
                 sx={{
                   width: 24,
                   height: 24,
