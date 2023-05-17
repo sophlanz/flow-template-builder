@@ -2,7 +2,7 @@ import { TemplateBuilderModel, TemplateBuilderArrayModel } from "../models/redux
 //deafult image to load into header
 import headerImage from '../assets/images/headerDefault.jpg'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Draft } from 'immer';
+import { Draft, produce } from 'immer';
 const initialTemplateBuilderModelState:TemplateBuilderArrayModel={
     specific_template:{
         header:headerImage,
@@ -50,7 +50,11 @@ const templateBuilderSlice=createSlice({
             const newTemplate:Draft<TemplateBuilderModel>={
                 ...action.payload
             }
-            state.all_templates.push(newTemplate)
+            //to avoid mutating state directly
+            return produce(state,(draftState)=>{
+                draftState.all_templates.push(newTemplate)
+            })
+        
         },
         /*set entire specific_template object */
         setSpecificTemplate(state,action:PayloadAction<TemplateBuilderModel>){
@@ -64,6 +68,17 @@ const templateBuilderSlice=createSlice({
                 template.id===updatedTemplate.id ? updatedTemplate : template
             );
             state.all_templates=updatedArray;
+        },
+        deleteFromTemplatesArray(state, action:PayloadAction<TemplateBuilderModel>){
+            const templateToDelete=action.payload
+            const updatedArray=state.all_templates.filter(
+                (template)=>template.id !==templateToDelete.id
+            );
+            return{
+                ...state,
+                all_templates:updatedArray
+            }
+        
         }
     }
 })
@@ -77,4 +92,5 @@ export const {setId}= templateBuilderSlice.actions;
 export const {pushToTemplatesArray}= templateBuilderSlice.actions;
 export const {setSpecificTemplate}= templateBuilderSlice.actions;
 export const {updateTemplatesArray}= templateBuilderSlice.actions;
+export const {deleteFromTemplatesArray}= templateBuilderSlice.actions;
 export default templateBuilderSlice;

@@ -13,6 +13,7 @@ import theme from '../../../styles/style';
 import { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 import MessageIcon from '@mui/icons-material/Message';
+import DeleteIcon from '@mui/icons-material/DeleteOutline';
 //redux
 import { TemplateBuilderModel } from '../../../models/redux-models';
 import {
@@ -21,6 +22,7 @@ import {
   pushToTemplatesArray,
   setSpecificTemplate,
   updateTemplatesArray,
+  deleteFromTemplatesArray,
 } from '../../../store/template-builder.slice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
 import { Theme } from 'emoji-picker-react';
@@ -71,6 +73,16 @@ function Sidebar() {
       handleDispatchNewTemplate(specificTemplate);
     }
   };
+  //check to see if template has already been saved (we're updating it), and needs to be deleted
+  const handleDeleteTemplate = () => {
+    if (!updatingTemplate) {
+      //just close the editing, and go back to home screen
+      setEditingMode(false);
+    } else {
+      handleDispatchDeleteTemplate(specificTemplate);
+      setEditingMode(false);
+    }
+  };
   {
     /*Dispatches to Redux*/
   }
@@ -98,10 +110,14 @@ function Sidebar() {
     //we're updating
     setUpdatingTemplate(true);
   };
+  const handleDispatchDeleteTemplate = (
+    templateToDelete: TemplateBuilderModel,
+  ) => {
+    dispatch(deleteFromTemplatesArray(templateToDelete));
+  };
   useEffect(() => {
     handleDispatchCampaign();
-  }, [campaignName]);
-  console.log(updatingTemplate);
+  }, [campaignName, handleDispatchCampaign]);
   return (
     <>
       {/*Container for sidebar */}
@@ -182,6 +198,7 @@ function Sidebar() {
               </Button>
             </ThemeProvider>
             <Button
+              onClick={handleDeleteTemplate}
               variant="outlined"
               sx={{
                 color: theme.palette.secondary.main,
@@ -204,7 +221,7 @@ function Sidebar() {
               gap: 20,
               width: '100%',
               mt: 100,
-              mb: 100,
+              mb: 50,
             }}
           >
             <Typography
@@ -268,26 +285,27 @@ function Sidebar() {
             alignItems: 'left',
             gap: 40,
             pl: 20,
-            ...(editingMode || savedTemplates.length < 1
-              ? { display: 'none' }
-              : {}),
+            ...(editingMode ? { display: 'none' } : {}),
           }}
         >
           <Typography
             variant="h6"
             sx={{
               textAlign: 'left',
-              width: '100%',
+              width: '95%',
               fontStyle: 'bold',
               fontweight: 600,
               fontFamily: 'Roboto',
               fontSize: 25,
+              lineHeight: 1.5,
             }}
           >
-            Saved Templates
+            {savedTemplates.length < 1
+              ? `You have no saved campaigns, get building!`
+              : `Saved Campaigns `}
           </Typography>
           {savedTemplates.map((template) => (
-            /*dispatch template to specific_template in redux, to be viewed/edited in sidebar*/
+            /*dispatch template to specific_template object in redux store, to be viewed/edited in sidebar*/
             <Box
               onClick={() => handleDispatchTemplate(template)}
               sx={{
@@ -298,18 +316,37 @@ function Sidebar() {
                 gap: 5,
                 height: 40,
                 borderRadius: '10px',
+                justifyContent: 'space-between',
                 pl: 15,
                 '&:hover': {
                   cursor: 'pointer',
                 },
               }}
             >
-              <MessageIcon
+              <Box
                 sx={{
-                  color: '#7986CB',
+                  display: 'flex',
+                  gap: 5,
+                }}
+              >
+                <MessageIcon
+                  sx={{
+                    color: '#7986CB',
+                  }}
+                />
+                <Typography>{template.campaign}</Typography>
+              </Box>
+              <DeleteIcon
+                sx={{
+                  width: 24,
+                  height: 24,
+                  color: 'rgba(0, 0, 0, 0.54)',
+                  '&:hover': {
+                    color: 'rgba(0, 0, 0, 0.74)',
+                    cursor: 'pointer',
+                  },
                 }}
               />
-              <Typography>{template.campaign}</Typography>
             </Box>
           ))}
         </Box>

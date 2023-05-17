@@ -55,7 +55,7 @@ function MessageButtons() {
   //useEffect monitors state changes to buttonValues, then dispatches to redux
   useEffect(() => {
     handleDispatchButtons();
-  }, [buttonValues]);
+  }, [buttonValues, handleDispatchButtons]);
   return (
     <>
       <Container
@@ -69,7 +69,6 @@ function MessageButtons() {
           pl: 24,
           /*allow container to collapse as buttons become deleted */
           maxHeight: 325,
-          minHeight: 60,
           width: 360,
           border: '1px solid rgba(0, 0, 0, 0.12)',
           borderRadius: '10px',
@@ -184,9 +183,9 @@ function MessageButtons() {
           }}
         >
           {/*array of button values
-                                            map array and display button number based on index of value, initialize at 1
-                                            to delete, remove that value (pass the button value -1 to get index, and splice out) in the array, and then re-map. 
-                                            array size can't be bigger than 3, max 3 buttons
+           map array and display button number based on index of value, initialize at 1
+           to delete, remove that value (pass the button value -1 to get index, and splice out) in the array, and then re-map. 
+           array size can't be bigger than 3, max 3 buttons
                                     */}
           {buttonValues.length
             ? buttonValues.map((buttonValue: string, index: number) => (
@@ -233,6 +232,7 @@ function MessageButtons() {
                         color: 'rgba(0, 0, 0, 0.54)',
                         '&:hover': {
                           color: 'rgba(0, 0, 0, 0.74)',
+                          cursor: 'pointer',
                         },
                       }}
                     />
