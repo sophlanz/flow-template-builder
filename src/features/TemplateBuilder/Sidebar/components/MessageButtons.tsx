@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Switch, TextField } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
@@ -260,6 +260,7 @@ function MessageButtons() {
                   >
                     {/*input field with char count*/}
                     <TextField
+                      autoFocus
                       id="outlined-basic"
                       variant="outlined"
                       size="small"
