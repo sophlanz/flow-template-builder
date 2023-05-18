@@ -54,18 +54,7 @@ function Sidebar() {
     },
     animation: 'left-right 2s ease',
   };
-  const animationVisibility = {
-    /*left to right on load */
-    '@keyframes hidden-visible': {
-      '0%': {
-        visbility: 'hidden',
-      },
-      '100%': {
-        visbility: 'visible',
-      },
-    },
-    animation: 'hidden-visibility 2s ease',
-  };
+
   {
     /*Redux */
   }

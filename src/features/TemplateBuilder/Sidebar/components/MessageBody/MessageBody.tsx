@@ -1,14 +1,17 @@
 import { Box, Container, Typography, Link } from '@mui/material';
-import theme from '../../../../styles/style';
+import theme from '../../../../../styles/style';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import ImportantIcon from '@mui/icons-material/Error';
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
-import TextEditor from './TextEditor';
+import TextEditor from '../TextEditor';
 import { useState, useEffect } from 'react';
 //redux
-import { setBodyMessage } from '../../../../store/template-builder.slice';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { setBodyMessage } from '../../../../../store/template-builder.slice';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../hooks/redux-hooks';
 function MessageBody() {
   {
     /*Redux */
@@ -162,6 +165,8 @@ function MessageBody() {
           defaultText={bodyMessageRedux}
           maxChar={1024}
           inputData={setNewBodyMessage}
+          //for testing
+          data-testid="text-editor"
         />
         {/*what are variables? container */}
         <Box

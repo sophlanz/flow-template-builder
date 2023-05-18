@@ -146,7 +146,6 @@ function TextEditor({ defaultText, maxChar, inputData }: Props) {
         <TextField
           multiline
           placeholder="What would you to tell your customers?"
-          defaultValue={defaultText}
           value={bodyMessage}
           rows={10}
           onChange={(e) => handleChangeMessage(e)}
@@ -157,6 +156,7 @@ function TextEditor({ defaultText, maxChar, inputData }: Props) {
           }}
           inputProps={{
             maxLength: maxChar,
+            'data-testid': 'text-editor',
           }}
         />
         <Typography
