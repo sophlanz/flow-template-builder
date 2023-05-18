@@ -106,14 +106,16 @@ const templateBuilderSlice=createSlice({
             const updatedArray:TemplateBuilderModel[] = state.all_templates.map((template)=>
                 template.id===updatedTemplate.id ? updatedTemplate : template
             );
-            state.all_templates=updatedArray;
+            return{
+                ...state,
+                all_templates:updatedArray
+            }
         },
         deleteFromTemplatesArray(state, action:PayloadAction<TemplateBuilderModel>){
             const templateToDelete=action.payload
             const updatedArray=state.all_templates.filter(
                 (template)=> template.id !==templateToDelete.id
             );
-            console.log(updatedArray)
             return{
                 ...state,
                 all_templates:updatedArray
