@@ -24,26 +24,62 @@ const templateBuilderSlice=createSlice({
     reducers:{
         //set header
         setHeader(state,action:PayloadAction<string>){
-            state.specific_template.header=action.payload;
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    header:action.payload
+                }
+            } 
         },
         //set bodyMessage
         setBodyMessage(state,action:PayloadAction<string>){
-            state.specific_template.bodyMessage=action.payload;
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    bodyMessage:action.payload
+                }
+            }
         },
         //set footer
         setFooter(state,action:PayloadAction<string>){
-            state.specific_template.footer=action.payload;
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    footer:action.payload
+                }
+            }
         },
         //set buttons
         setButtons(state,action:PayloadAction<string[]>){
-            state.specific_template.buttons=action.payload;
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    buttons:action.payload
+                }
+            }
         },
         //set campaign name
         setCampaign(state,action:PayloadAction<string>){
-            state.specific_template.campaign=action.payload
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    campaign:action.payload
+                }
+            }
         },
         setId(state,action:PayloadAction<string>){
-            state.specific_template.id=action.payload
+            return{
+                ...state,
+                specific_template:{
+                    ...state.specific_template,
+                    id:action.payload
+                }
+            }
         },
         /*push new template to templates array*/
         pushToTemplatesArray(state,action:PayloadAction<TemplateBuilderModel>){
@@ -58,7 +94,10 @@ const templateBuilderSlice=createSlice({
         },
         /*set entire specific_template object */
         setSpecificTemplate(state,action:PayloadAction<TemplateBuilderModel>){
-            state.specific_template=action.payload
+            return{
+                ...state,
+                specific_template:action.payload
+            }
         },
         /*update a template already in templates array*/
         updateTemplatesArray(state,action:PayloadAction<TemplateBuilderModel>){
@@ -71,8 +110,6 @@ const templateBuilderSlice=createSlice({
         },
         deleteFromTemplatesArray(state, action:PayloadAction<TemplateBuilderModel>){
             const templateToDelete=action.payload
-            console.log(templateToDelete)
-            console.log(state.all_templates)
             const updatedArray=state.all_templates.filter(
                 (template)=> template.id !==templateToDelete.id
             );
