@@ -5,7 +5,7 @@ export interface TemplateBuilderModel{
     "buttons":string[],
     "campaign":string,
     "id":string
-};
+}
 export interface TemplateBuilderArrayModel{
     all_templates:TemplateBuilderModel[],
     specific_template:TemplateBuilderModel;

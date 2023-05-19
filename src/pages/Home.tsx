@@ -1,5 +1,4 @@
 import TemplateBuilder from '../features/TemplateBuilder/index';
-import { Typography } from '@mui/material';
 function Home() {
   return (
     <>

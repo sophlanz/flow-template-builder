@@ -49,15 +49,12 @@ function MessageHeader() {
     /*Dispatches to Redux */
   }
   //dispatch file to redux
-  const handleDispatch = () => {
+  //dispatch changes to redux upon change
+  useEffect(() => {
     if (newFile) {
       dispatch(setHeader(newFile));
     }
-  };
-  //dispatch changes to redux upon change
-  useEffect(() => {
-    handleDispatch();
-  }, [newFile]);
+  }, [newFile, dispatch]);
 
   return (
     /*Content and header Container */

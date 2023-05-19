@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Switch, TextField } from '@mui/material';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
@@ -39,7 +39,7 @@ function MessageButtons() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     //splice out the index, and update it, then update state
-    let updatedValues = [...buttonValues];
+    const updatedValues = [...buttonValues];
     updatedValues.splice(index, 1);
     updatedValues.splice(index, 0, event.target.value);
     setButtonValues(updatedValues);
@@ -48,13 +48,10 @@ function MessageButtons() {
     /*Redux Dispatches */
   }
   //dispatch buttonValues array to redux store
-  const handleDispatchButtons = () => {
-    dispatch(setButtons(buttonValues));
-  };
   //useEffect monitors state changes to buttonValues, then dispatches to redux
   useEffect(() => {
-    handleDispatchButtons();
-  }, [buttonValues]);
+    dispatch(setButtons(buttonValues));
+  }, [buttonValues, dispatch]);
   return (
     <>
       <Container

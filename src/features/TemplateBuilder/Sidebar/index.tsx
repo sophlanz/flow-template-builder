@@ -124,12 +124,6 @@ function Sidebar() {
   ) => {
     dispatch(updateTemplatesArray(updatedTemplate));
   };
-  //dispatch campaign name to redux
-  const handleDispatchCampaign = () => {
-    if (campaignName) {
-      dispatch(setCampaign(campaignName));
-    }
-  };
   //dispatch chosen template to specific_template in redux store, for updating a template
   const handleDispatchTemplate = (template: TemplateBuilderModel) => {
     dispatch(setSpecificTemplate(template));
@@ -143,10 +137,12 @@ function Sidebar() {
   ) => {
     dispatch(deleteFromTemplatesArray(templateToDelete));
   };
+  //dispatch campaign name to redux
   useEffect(() => {
-    handleDispatchCampaign();
-  }, [campaignName]);
-  console.log(savedTemplates);
+    if (campaignName) {
+      dispatch(setCampaign(campaignName));
+    }
+  }, [campaignName, dispatch]);
   return (
     <>
       {/*Container for sidebar */}

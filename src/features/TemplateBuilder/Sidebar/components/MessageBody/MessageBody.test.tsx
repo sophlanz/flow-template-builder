@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import MessageBody from './MessageBody';
@@ -19,22 +18,22 @@ describe('MessageBody component', () => {
     });
 
     // Render the MessageBody component wrapped in the Provider with the mock store
-    const { getByTestId, getByText } = render(
+    render(
       <Provider store={store}>
         <MessageBody />
       </Provider>,
     );
 
     // Assert the presence of the body message header
-    const bodyMessageHeader = getByText('Body Message');
+    const bodyMessageHeader = screen.getByText('Body Message');
     expect(bodyMessageHeader).toBeInTheDocument();
 
     // Assert the presence of the required notice
-    const requiredNotice = getByText('REQUIRED');
+    const requiredNotice = screen.getByText('REQUIRED');
     expect(requiredNotice).toBeInTheDocument();
 
     // Simulate typing in the textarea
-    const textarea = getByTestId('text-editor');
+    const textarea = screen.getByTestId('text-editor');
     fireEvent.change(textarea, { target: { value: 'New message' } });
 
     // Dispatch the action and get the dispatched actions from the store

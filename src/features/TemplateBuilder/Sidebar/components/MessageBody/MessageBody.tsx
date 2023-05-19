@@ -29,14 +29,12 @@ function MessageBody() {
   {
     /*Redux Dispatches */
   }
-  //dispatch updated body message
-  const handleDispatch = () => {
-    dispatch(setBodyMessage(newBodyMessage));
-  };
-  //call dispatch when newBodyMessage updates
+
   useEffect(() => {
-    if (newBodyMessage.length > 0) handleDispatch();
-  }, [newBodyMessage]);
+    if (newBodyMessage.length > 0) {
+      dispatch(setBodyMessage(newBodyMessage));
+    }
+  }, [newBodyMessage, dispatch]);
   return (
     <>
       {/* Body Message (header + textarea) Container */}

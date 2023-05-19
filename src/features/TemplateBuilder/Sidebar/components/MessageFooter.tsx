@@ -27,13 +27,10 @@ function MessageFooter() {
     /*Dispatches to Redux */
   }
   //dispatch new footer to redux store
-  const handleDispatchFooter = () => {
-    dispatch(setFooter(newFooter));
-  };
   //when footer is updated, dispatch it.
   useEffect(() => {
-    if (newFooter.length > 0) handleDispatchFooter();
-  }, [newFooter]);
+    if (newFooter.length > 0) dispatch(setFooter(newFooter));
+  }, [newFooter, dispatch]);
 
   return (
     <>

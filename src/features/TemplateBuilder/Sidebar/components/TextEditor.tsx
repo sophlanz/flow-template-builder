@@ -88,7 +88,7 @@ function TextEditor({ defaultText, maxChar, inputData }: Props) {
   //track if emoji picker is open, default is closed
   const [emojiPicker, setEmojiPicker] = useState<boolean>(false);
   interface EmojiObject {
-    emoji: any;
+    emoji: string;
   }
   const handleEmojiClick = (emojiObject: EmojiObject) => {
     const emoji = emojiObject.emoji;
@@ -126,7 +126,7 @@ function TextEditor({ defaultText, maxChar, inputData }: Props) {
     const currDisplay = bodyStyles.display;
     const newBodyStyles = {
       ...bodyStyles,
-      display: currDisplay == 'block' ? 'none' : 'block',
+      display: currDisplay === 'block' ? 'none' : 'block',
     };
     setBodyStyles(newBodyStyles);
   };
