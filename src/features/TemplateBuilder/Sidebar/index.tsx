@@ -216,6 +216,7 @@ function Sidebar() {
             {/*Save and delete buttons */}
             <ThemeProvider theme={theme}>
               <Button
+                data-testid="saveButton"
                 onClick={handleSave}
                 variant="contained"
                 color="secondary"
@@ -232,6 +233,7 @@ function Sidebar() {
               </Button>
             </ThemeProvider>
             <Button
+              data-testid="deleteButton"
               onClick={handleDeleteTemplate}
               variant="outlined"
               sx={{
@@ -284,6 +286,7 @@ function Sidebar() {
               <Typography variant="h6">Campaign Name</Typography>
               <FormControl required defaultValue="Amazing Campaign">
                 <TextField
+                  data-testId="campaignNameTextField"
                   aria-label="campaign name input"
                   size="small"
                   onChange={(e) => setCampaignName(e.target.value)}
@@ -296,6 +299,7 @@ function Sidebar() {
               </FormControl>
             </Box>
             <Button
+              data-testid="startBuildingButton"
               onClick={handleStartBuilding}
               variant="outlined"
               color="secondary"
@@ -378,6 +382,7 @@ function Sidebar() {
                 </Typography>
               </Box>
               <DeleteIcon
+                data-testid="deleteIcon"
                 onClick={() => handleDispatchDeleteTemplate(template)}
                 sx={{
                   width: 24,
