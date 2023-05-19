@@ -14,8 +14,8 @@ function TemplateBuilder() {
         },
       }}
     >
-      <Sidebar />
-      <MessageNode />
+      <Sidebar data-testid="sidebar" />
+      <MessageNode data-testid="messageNode" />
     </Box>
   );
 }

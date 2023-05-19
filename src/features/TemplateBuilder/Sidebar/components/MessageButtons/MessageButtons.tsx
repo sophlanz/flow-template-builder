@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 import RectangleIcon from '@mui/icons-material/Crop169';
 import ImportantIcon from '@mui/icons-material/Error';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
-import theme from '../../../../styles/style';
+import theme from '../../../../../styles/style';
 //redux
-import { setButtons } from '../../../../store/template-builder.slice';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { setButtons } from '../../../../../store/template-builder.slice';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../hooks/redux-hooks';
 function MessageButtons() {
   {
     /*Redux */

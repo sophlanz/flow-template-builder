@@ -2,11 +2,14 @@ import { Box, Container, Typography, Switch } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import ImportantIcon from '@mui/icons-material/Error';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-import theme from '../../../../styles/style';
-import TextEditor from './TextEditor';
+import theme from '../../../../../styles/style';
+import TextEditor from '../TextEditor/TextEditor';
 //redux
-import { setFooter } from '../../../../store/template-builder.slice';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { setFooter } from '../../../../../store/template-builder.slice';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../hooks/redux-hooks';
 function MessageFooter() {
   {
     /*Redux */

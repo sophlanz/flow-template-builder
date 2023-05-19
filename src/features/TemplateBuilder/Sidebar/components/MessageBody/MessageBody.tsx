@@ -4,7 +4,7 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 import ImportantIcon from '@mui/icons-material/Error';
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
-import TextEditor from '../TextEditor';
+import TextEditor from '../TextEditor/TextEditor';
 import { useState, useEffect } from 'react';
 //redux
 import { setBodyMessage } from '../../../../../store/template-builder.slice';

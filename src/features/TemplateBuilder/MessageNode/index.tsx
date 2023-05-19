@@ -3,6 +3,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import theme from '../../../styles/style';
 import VectorSvg from './components/VectorSvg';
 import background from '../../../assets/images/background.jpg';
+import uniqid from 'uniqid';
 //redux
 import { useAppSelector } from '../../../hooks/redux-hooks';
 function MessageNode() {
@@ -46,6 +47,7 @@ function MessageNode() {
   return (
     /*Message Node Container */
     <Box
+      data-testid="messageNode"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -288,7 +290,7 @@ function MessageNode() {
                 {/*we will map out button values array */}
                 {updatedMessageNode.specific_template.buttons.map((value) => (
                   <Button
-                    id={JSON.stringify(value)}
+                    key={uniqid()}
                     sx={{
                       width: 232.88,
                       height: 30.68,

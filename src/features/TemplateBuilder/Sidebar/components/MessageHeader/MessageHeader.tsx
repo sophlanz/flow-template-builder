@@ -10,15 +10,18 @@ import {
   ThemeProvider,
   Link,
 } from '@mui/material';
-import LeftHeaderSvg from './ui/LeftHeaderSvg';
-import RightHeaderSvg from './ui/RightHeaderSvg';
+import LeftHeaderSvg from '../ui/LeftHeaderSvg';
+import RightHeaderSvg from '../ui/RightHeaderSvg';
 import { useState, useEffect } from 'react';
-import theme from '../../../../styles/style';
+import theme from '../../../../../styles/style';
 import HighlightIcon from '@mui/icons-material/Highlight';
 import CloseIcon from '@mui/icons-material/Close';
 //redux
-import { setHeader } from '../../../../store/template-builder.slice';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux-hooks';
+import { setHeader } from '../../../../../store/template-builder.slice';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../hooks/redux-hooks';
 function MessageHeader() {
   {
     /*Redux */

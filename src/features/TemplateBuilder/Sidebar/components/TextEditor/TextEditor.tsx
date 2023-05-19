@@ -1,6 +1,6 @@
 import { Box, Typography, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import theme from '../../../../styles/style';
+import theme from '../../../../../styles/style';
 import SmileyIcon from '@mui/icons-material/EmojiEmotions';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatClearIcon from '@mui/icons-material/FormatClear';

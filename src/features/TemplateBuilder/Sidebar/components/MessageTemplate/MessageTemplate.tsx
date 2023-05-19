@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
-import MessageBody from './MessageBody/MessageBody';
-import MessageButtons from './MessageButtons';
-import MessageFooter from './MessageFooter';
-import MessageHeader from './MessageHeader';
+import MessageBody from '../MessageBody/MessageBody';
+import MessageButtons from '../MessageButtons/MessageButtons';
+import MessageFooter from '../MessageFooter/MessageFooter';
+import MessageHeader from '../MessageHeader/MessageHeader';
 
 function MessageTemplate() {
   return (

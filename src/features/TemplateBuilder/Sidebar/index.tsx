@@ -1,4 +1,4 @@
-import MessageTemplate from './components/MessageTemplate';
+import MessageTemplate from './components/MessageTemplate/MessageTemplate';
 import {
   Box,
   Typography,
@@ -147,6 +147,7 @@ function Sidebar() {
     <>
       {/*Container for sidebar */}
       <Box
+        data-testid="sidebar"
         sx={{
           display: 'flex',
           flexDirection: 'column',
